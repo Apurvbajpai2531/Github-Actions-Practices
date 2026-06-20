@@ -1,11 +1,45 @@
+# Workflow name (No indentation required)
 name: Hello
 
+# Defines when the workflow will run
 on:
+  # Allows manual triggering from the GitHub Actions tab
   workflow_dispatch:
 
+# Jobs define what the workflow will do
 jobs:
+
+  # First job
   say-hello:
+
+    # Creates an ephemeral Ubuntu runner (temporary VM)
+    # GitHub starts it for the job and deletes it after completion
     runs-on: ubuntu-latest
+
+    # Steps define the sequence of tasks inside a job
     steps:
-      - name: Say hello
+
+      # Run a shell command
+      - name: Say hello to Everyone
         run: echo "Hello Dosto"
+
+      # Example of an Action
+      # Actions are reusable units that perform specific tasks
+      # - name: Checkout Repository
+      #   uses: actions/checkout@v4
+
+# Notes:
+# Workflow -> Contains jobs
+# Jobs -> Contains steps
+# Steps -> Can contain either:
+#          1. run (shell commands)
+#          2. uses (GitHub Actions)
+#
+# Structure:
+#
+# Workflow
+# └── Jobs
+#     └── Job
+#         └── Steps
+#             ├── Run Commands
+#             └── Actions
