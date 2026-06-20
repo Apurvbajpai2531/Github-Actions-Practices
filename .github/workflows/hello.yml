@@ -1,0 +1,26 @@
+# Workflow no indeantation required for naming the workflow
+
+
+name: Hello
+# On tells when the workflows run (Give indentation)
+on: 
+  workflow_dispatch: 
+# Jobs tell the what the worfklow should do there is more than one ore more job  
+jobs:
+#1st job 
+  say-hello:
+  #Create an ephermal container with ubuntu running first run and delete means ephermal 
+      runs-on: ubuntu-latest
+      steps:
+      #run have the command 
+        - name: Say hello to Everyone
+          run: echo "Hello Dosto"
+# Should be inside the workflow
+
+# Steps
+
+# Should be insite the job
+
+# Actions
+
+# Should be inside the Steps
