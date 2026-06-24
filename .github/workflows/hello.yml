@@ -1,45 +1,29 @@
-# Workflow name (No indentation required)
-name: Hello
+# my first ci file
 
-# Defines when the workflow will run
+name: My First CI Pipeline
+
 on:
-  # Allows manual triggering from the GitHub Actions tab
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
 
-# Jobs define what the workflow will do
 jobs:
-
-  # First job
-  say-hello:
-
-    # Creates an ephemeral Ubuntu runner (temporary VM)
-    # GitHub starts it for the job and deletes it after completion
+  build:
     runs-on: ubuntu-latest
 
-    # Steps define the sequence of tasks inside a job
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      # Run a shell command
-      - name: Say hello to Everyone
-        run: echo "Hello Dosto"
+      - name: Welcome message
+        run: echo "Hello, World! This is my first CI pipeline."
 
-      # Example of an Action
-      # Actions are reusable units that perform specific tasks
-      # - name: Checkout Repository
-      #   uses: actions/checkout@v4
+      - name: Show Date and Time
+        run: date
 
-# Notes:
-# Workflow -> Contains jobs
-# Jobs -> Contains steps
-# Steps -> Can contain either:
-#          1. run (shell commands)
-#          2. uses (GitHub Actions)
-#
-# Structure:
-#
-# Workflow
-# └── Jobs
-#     └── Job
-#         └── Steps
-#             ├── Run Commands
-#             └── Actions
+      - name: List all files in the repository
+        run: ls -la
+
+      - name: Show Branch Name
+        run: echo "Current branch: ${{ github.ref }}"
