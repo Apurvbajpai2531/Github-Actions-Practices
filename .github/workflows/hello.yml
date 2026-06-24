@@ -23,4 +23,5 @@ jobs:
         run: ls -la
 
       - name: Show Branch Name
-        run: echo "Current branch: ${{ github.ref }}"
+        run: | 
+            echo "Current branch: ${GITHUB_REF}"
