@@ -1,0 +1,26 @@
+name: Self Hosted Runner Demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  self-hosted-job:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Display Runner Details
+        run: |
+          echo "Running on Self-Hosted Runner"
+          hostname
+          pwd
+          whoami
+
+      - name: Create Test File
+        run: |
+          echo "Hello from Self Hosted Runner!" > runner-test.txt
+
+      - name: Verify File
+        run: dir
