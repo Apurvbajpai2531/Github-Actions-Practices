@@ -1,0 +1,73 @@
+name: GitHub Hosted Runners
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+  workflow_dispatch:
+
+jobs:
+  ubuntu-runner:
+    name: Ubuntu Runner
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Runner Information
+        run: |
+          echo "Operating System: $RUNNER_OS"
+          echo "Hostname:"
+          hostname
+          echo "Current User:"
+          whoami
+
+      - name: Installed Software
+        run: |
+          echo "Docker Version"
+          docker --version
+
+          echo "Python Version"
+          python --version
+
+          echo "Node Version"
+          node --version
+
+          echo "Git Version"
+          git --version
+
+  windows-runner:
+    name: Windows Runner
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Runner Information
+        shell: powershell
+        run: |
+          Write-Host "Operating System: $env:RUNNER_OS"
+          Write-Host "Hostname:"
+          hostname
+          Write-Host "Current User:"
+          whoami
+
+  macos-runner:
+    name: macOS Runner
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Runner Information
+        run: |
+          echo "Operating System: $RUNNER_OS"
+          echo "Hostname:"
+          hostname
+          echo "Current User:"
+          whoami
