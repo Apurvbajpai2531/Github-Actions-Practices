@@ -1,0 +1,38 @@
+name: Artifact Demo & Shell Test
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create Report
+        run: |
+          echo "GitHub Actions Report" > report.txt
+          echo "Generated on $(date)" >> report.txt
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-report
+          path: report.txt
+
+  download-report:
+    needs: generate-report
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-report
+
+      - name: Display Report
+        run: cat report.txt
