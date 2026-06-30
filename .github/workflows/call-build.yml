@@ -1,0 +1,27 @@
+name: Call Reusable Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    uses: ./.github/workflows/reusable-build.yml
+
+    with:
+      app_name: Github-Actions-Practice
+      environment: production
+
+    secrets:
+      docker_token: ${{ secrets.DOCKER_TOKEN }}
+
+  show-version:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print Build Version
+        run: |
+          echo "Version: ${{ needs.build.outputs.build_version }}"
